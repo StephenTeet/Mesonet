@@ -1,6 +1,8 @@
-#Mesonet_LTAR
-#Stephen Teet
-#6/19/2020
+##Mesonet_LTAR
+
+###Stephen Teet
+
+###6/19/2020
 
 
 ## R code for processing Mesonet data for use in the LTAR network.
