@@ -1,10 +1,7 @@
+#Mesonet_LTAR
+#Stephen Teet
+#6/19/2020
 
----
-title: "Mesonet_LTAR"
-author: "Stephen Teet"
-date: "6/19/2020"
-output: html_document
----
 
 ## R code for processing Mesonet data for use in the LTAR network.
 
