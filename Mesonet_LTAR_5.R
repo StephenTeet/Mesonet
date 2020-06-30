@@ -5,7 +5,7 @@
 library(plyr)
 
 #Set the working directory
-setwd("D:/LTAR/Mesonet/2018/Jan")
+setwd("D:/LTAR/Mesonet/2018/Feb")
 
 #Create list of file names; thes include the date and station info, the file only includes time
 #in 5 minute increments
@@ -21,7 +21,7 @@ df = do.call("rbind", datalist)
 hm = read.table("D:/LTAR/Mesonet/time.txt", header = TRUE, row.names = NULL)
 
 #read in date table
-day = read.table("D:/LTAR/Mesonet/2018/Jan_Date.txt", header = TRUE, row.names = NULL)
+day = read.table("D:/LTAR/Mesonet/2018/Feb_Date.txt", header = TRUE, row.names = NULL)
 
 #pull out only needed columns from concatenated table
 df = df[c(3:6,8,12:13)]
@@ -42,6 +42,12 @@ df$Date               <- ''       #add Date
 df$Time               <- ''       #add column for time
 df$TZ                 <- '-06:00' #adds time zone difference
 
+#get rid of error codes (optional)
+df[df == -999] <- NA
+df[df == -998] <- NA
+df[df == -996] <- NA
+df[df == -995] <- NA
+
 #convert millibar to kilopascal ( /10)
 df$AirPressure = df$AirPressure / 10
 
@@ -54,15 +60,10 @@ df$Date = day$Date
 #concatenate date/time/tz columns into DateTime column
 df$DateTime = paste0(df$Date,df$Time,df$TZ)
 
+
 #reorder columns
 df1 = df[,c(8,9,1,10,3,4,5,2,6,7,11,12,13,14,15)]
 
-#get rid of error codes (optional)
-df[df == -999] <- NA
-df[df == -998] <- NA
-df[df == -996] <- NA
-df[df == -995] <- NA
-
 #Write table as *.csv file
-write.csv(df1, file = "20180100elre.csv", row.names = FALSE)#
+write.csv(df1, file = "20180200elre.csv", row.names = FALSE)#
 
